@@ -1,0 +1,12 @@
+---
+  - name: Setup instance
+    hosts: setuphost
+    roles:
+      - { role: setup-instance, iname: 'flink01' }
+
+#  - name: Base of Flink-Ansible
+#    hosts: flink-single
+#    remote_user: ubuntu
+#    sudo: True
+#    roles:
+#      - common

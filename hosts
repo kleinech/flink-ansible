@@ -1,0 +1,9 @@
+[setuphost]
+localhost ansible_connection=local
+
+[flink-jobmanager]
+192.168.209.150
+
+[flink-taskmanager]
+tmng_00 ansible_host=192.168.209.160
+tmng_01 ansible_host=192.168.209.161

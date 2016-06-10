@@ -1,0 +1,25 @@
+---
+- name: Update packages
+  apt: update_cache=yes
+
+- name: Install git
+  apt: name=git state=present
+
+- name: Install Java
+  apt: name=default-jdk state=present
+
+- name: Install Maven
+  apt: name=maven state=present
+
+- name: Get Flink
+  git: repo=https://github.com/apache/flink.git dest=/home/ubuntu/flink
+
+- name: Install Flink
+  command: mvn clean package -DskipTests
+  args:
+    chdir: /home/ubuntu/flink/
+
+- name: Test Flink
+  command: ./start-local.sh
+  args:
+    chdir: /home/ubuntu/flink/build-target/bin/
