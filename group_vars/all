@@ -1,5 +1,7 @@
 # ssh configuration
 sshd_port: 22
 sshd_pubkeyauth: false
-ansible_ssh_private_key_file: secure/flink
+ansible_ssh_private_key_file: certificates/flink
 ansible_ssh_common_args: -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
+sec_group: flink
+private_key_name: flink

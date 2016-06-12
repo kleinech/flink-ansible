@@ -10,7 +10,8 @@
 
 - name: Install Maven
   apt: name=maven state=present
-
+  
+# Better Solution: directly download compiled flink-program
 - name: Get Flink
   git: repo=https://github.com/apache/flink.git dest=/home/ubuntu/flink
 
@@ -19,7 +20,4 @@
   args:
     chdir: /home/ubuntu/flink/
 
-- name: Test Flink
-  command: ./start-local.sh
-  args:
-    chdir: /home/ubuntu/flink/build-target/bin/
+

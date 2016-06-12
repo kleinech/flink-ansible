@@ -1,0 +1,10 @@
+{% for item in groups %}
+
+[{{item}}]
+{%   for entry in groups[item] %}
+{{ entry }}{% if entry == 'localhost' %}
+ ansible_connection=local
+{% endif %}
+
+{%   endfor %}
+{% endfor %}

@@ -1,0 +1,9 @@
+---
+# TODO
+# - Set / (Copy) / (Change jobmanager.rpc.address= ... in) FLink Config Files
+# - Start Cluster ...
+- name: Test Flink
+  command: ./start-local.sh
+  sudo: True
+  args:
+    chdir: /home/ubuntu/flink/build-target/bin/

@@ -1,12 +1,33 @@
 ---
-  - name: Setup instance
-    hosts: setuphost
+  - name: Create instances
+    hosts: localhost
     roles:
-      - { role: setup-instance, iname: 'flink01' }
-
-#  - name: Base of Flink-Ansible
-#    hosts: flink-single
+      - { role: create-instance, iname: flink01, igroup: flink-jobmanager }
+      - { role: create-instance, iname: flink02, igroup: flink-taskmanager }
+ #     - { role: create-instance, iname: flink03, igroup: flink-taskmanager }
+    post_tasks:
+      - name: Create host file
+        become: yes
+        template:
+            src: templates/host.tmpl.j2
+            dest: ./hosts         
+  - name: Install flink + dependencies
+    hosts: flink-jobmanager:flink-tasksmanager
+    remote_user: ubuntu
+    sudo: True
+    roles:
+      - install-instances
+      
+#  - name: Start Flink-Cluster Jobmanager
+#    hosts: flink-jobmanager
 #    remote_user: ubuntu
 #    sudo: True
 #    roles:
-#      - common
+#      - { role: start-instances }
+#      
+#  - name: Start Flink-Cluster Taskmanager
+#    hosts: flink-tasksmanager
+#    remote_user: ubuntu
+#    sudo: True
+#    roles:
+#      - { role: start-instances }

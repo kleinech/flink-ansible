@@ -1,0 +1,20 @@
+---
+- name: Launch instance
+  os_server:
+    name: "{{iname}}"
+    state: present
+    image: ubuntu-14.04-trusty-server-cloudimg
+    flavor: m1.small
+    floating_ip_pools:
+        - float
+    key_name: "{{private_key_name}}"
+    security_groups:
+        - default
+        - "{{sec_group}}"
+    nics:
+      - net-id: 8ba50f96-c076-4242-b975-1dbd83e318dd
+  register: fip
+- debug:
+    var: fip
+- add_host: name={{fip.server.public_v4}} group={{igroup}}
+  

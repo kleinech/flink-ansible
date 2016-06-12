@@ -1,9 +1,18 @@
-[setuphost]
+
+[ungrouped]
 localhost ansible_connection=local
 
+
 [flink-jobmanager]
-192.168.209.150
+192.168.209.203
+
+[all]
+localhost ansible_connection=local
+
+192.168.209.203
+192.168.209.202
+192.168.209.205
 
 [flink-taskmanager]
-tmng_00 ansible_host=192.168.209.160
-tmng_01 ansible_host=192.168.209.161
+192.168.209.202
+192.168.209.205
